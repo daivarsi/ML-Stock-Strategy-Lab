@@ -1,26 +1,32 @@
-# 📊 Stock Modeling Lab
+# 📊 ML Stock Strategy Lab
 
-An evolving, modular project exploring machine learning and deep learning techniques for forecasting stock price trends, volatility, and movement. Using real market data and powerful models, each module investigates a different question in quantitative finance and time-series prediction.
+An evolving, modular project exploring machine learning and deep learning techniques for forecasting stock price trends and simulating trading strategies. Using real market data and powerful models, each module investigates a different question in quantitative finance and time-series prediction.
 
 ---
 
 ## 🔍 Objective
-**Can modern ML models capture financial price behavior better than traditional methods?**
+**Can machine learning not only predict financial movements but also drive profitable decisions?**
 
-From SVR to LSTMs, from technical indicators to trade simulation — this lab demonstrates practical, progressive solutions for stock prediction.
+From SVR to XGBoost to LSTMs and full backtests, this lab walks through both modeling and deploying ML strategies in trading contexts.
 
 ---
 
 ## 🧱 Repository Structure
 
 ```
-stock-modeling-lab/
+ml-stock-strategy-lab/
 ├── baseline_svr_xgboost/            # 🔹 Baseline regression using SVR + XGBoost
-├── technical_features/             # 🔹 Add moving averages, RSI, volume, etc.
-├── classification_movement/        # 🔹 Predict direction (up/down) instead of price
+│   └── tesla_price_regression.ipynb
+├── technical_features/             # 🔹 Add moving averages, RSI, volume, MACD, etc.
+│   └── feature_engineered_model.ipynb
+├── classification_movement/        # 🔹 Predict direction (Up/Down) and backtest strategy
+│   └── direction_classifier_with_backtest.ipynb
 ├── deep_learning_lstm/             # 🔹 LSTM for time-series forecasting
-├── backtesting_trades/             # 🔹 Simulate trades based on model predictions
+│   └── lstm_price_forecast.ipynb
+├── backtesting_trades/             # 🔹 (optional) Separated strategy notebooks if modularized
+│   └── strategy_backtest.ipynb
 ├── crypto_modeling/                # 🔹 Compare crypto vs stock prediction
+│   └── crypto_forecast.ipynb
 ├── requirements.txt
 └── README.md
 ```
@@ -29,77 +35,76 @@ Each folder contains:
 - A clean notebook
 - Commentary on methods used
 - Visualizations
-- Performance metrics (MSE, accuracy, etc.)
+- Performance metrics (MSE, accuracy, F1, Sharpe, etc.)
 
 ---
 
 ## 📁 Modules Breakdown
 
-### `baseline_svr_xgboost/`
-- Compares SVR and XGBoost on Tesla stock
-- Uses only time index as input
-- Evaluates fit using MSE and R²
+### `classification_movement/direction_classifier_with_backtest.ipynb`
+- Feature-rich XGBoost classifier
+- Threshold tuning to optimize F1
+- Final predictions used to simulate trading strategy
+- Backtested vs buy-and-hold with Sharpe ratio and win rate
 
-### `technical_features/`
-- Adds indicators like SMA, EMA, RSI
-- Tests whether additional signals improve prediction
-- Uses feature engineering + XGBoost
+### `baseline_svr_xgboost/tesla_price_regression.ipynb`
+- Compares SVR and XGBoost on TSLA close price
+- Uses raw time index as input
+- Establishes benchmark regression performance
 
-### `classification_movement/`
-- Reframes the problem: up/down instead of price
-- Binary classifier using logistic regression, XGBoost
-- Evaluates using accuracy, precision, recall, F1
+### `technical_features/feature_engineered_model.ipynb`
+- Adds SMA, EMA, RSI, % change, MACD, and lag features
+- Improves predictive power of base model
 
-### `deep_learning_lstm/`
-- Builds a sequential LSTM model with Keras
-- Uses time windows as input sequences
-- Evaluates forecasting ability for 1–5 day predictions
+### `deep_learning_lstm/lstm_price_forecast.ipynb`
+- LSTM forecasting for multi-step stock price prediction
+- Sequential modeling for temporal dynamics
 
-### `backtesting_trades/`
-- Simulates trading decisions based on predicted signals
-- Tracks portfolio returns vs buy-and-hold strategy
-- Incorporates win rate, drawdown, cumulative profit
+### `crypto_modeling/crypto_forecast.ipynb`
+- Repeats the pipeline on BTC or ETH
+- Evaluates whether crypto behaves differently than stocks
 
-### `crypto_modeling/`
-- Applies models to BTC-USD or ETH-USD
-- Compares performance against traditional stocks
-- Analyzes differences in trend behavior and volatility
+### `backtesting_trades/strategy_backtest.ipynb`
+- Modular notebook for strategy simulation based on model predictions
+- Evaluates cumulative returns, Sharpe ratio, and win rate
+- Can plug into multiple classifiers or forecasting outputs
 
 ---
 
-## 🛠 Getting Started
+## 📦 Installation
 
-Install dependencies:
+Run this to install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-Or run each notebook in **Google Colab** with necessary pip cells included.
+Or run notebooks in **Google Colab** — pip cells included.
 
 ---
 
-## 📈 Example Visuals
-- Model predictions vs actual
-- Confusion matrix (classification)
-- Trade profit curves
-- Feature importance plots
+## 📈 Example Outputs
+- 📊 Classification Accuracy: ~62%
+- 💰 Strategy Return: +7.49%
+- 📉 Buy & Hold Return: –14.39%
+- 📈 Sharpe Ratio: 1.16
+- 🧠 Model: XGBoostClassifier w/ class balancing, feature engineering, and threshold tuning
 
 ---
 
-## 🧠 Future Ideas
-- LSTM + Attention
-- Hybrid models (technical + news sentiment)
-- Cross-stock generalization testing
+## 🚀 Future Work
+- Add cross-validation / rolling windows
+- Implement long/short strategies
+- Expand to more stocks (AAPL, SPY, NVDA)
+- Deploy as a Streamlit app
 
 ---
 
 ## 🙋‍♂️ Author
 **Daivarsi Malik**  
 Applied Modeling & Optimization  
-Feel free to fork, run experiments, or suggest new modules.
+This repo is part of a personal research initiative into quantitative trading and ML modeling.
 
 ---
 
 ## 📜 License
 MIT License
-
