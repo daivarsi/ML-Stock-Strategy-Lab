@@ -1,31 +1,105 @@
-# 📈 Stock Price Prediction with SVR and XGBoost
+# 📊 Stock Modeling Lab
 
-This project compares two advanced regression models — **Support Vector Regression (SVR)** and **XGBoost** — to predict Tesla (TSLA) stock prices based on recent historical data. The goal is to move beyond oversimplified linear regression and evaluate how more powerful, nonlinear models perform on real financial time series data.
-
----
-
-## 🔍 Project Overview
-
-- **Data Source**: Yahoo Finance (via `yfinance`)
-- **Models Used**: SVR (RBF Kernel), XGBoost Regressor
-- **Evaluation Metrics**: Mean Squared Error (MSE), R² Score
-- **Time Window**: Last 90 days of TSLA closing price data
+An evolving, modular project exploring machine learning and deep learning techniques for forecasting stock price trends, volatility, and movement. Using real market data and powerful models, each module investigates a different question in quantitative finance and time-series prediction.
 
 ---
 
-## 🧰 Technologies Used
+## 🔍 Objective
+**Can modern ML models capture financial price behavior better than traditional methods?**
 
-- Python 3.10+
-- scikit-learn
-- xgboost
-- yfinance
-- matplotlib, pandas, numpy
+From SVR to LSTMs, from technical indicators to trade simulation — this lab demonstrates practical, progressive solutions for stock prediction.
 
 ---
 
-## 📦 Installation
+## 🧱 Repository Structure
 
-Run the following in a Google Colab cell or your terminal:
+```
+stock-modeling-lab/
+├── baseline_svr_xgboost/            # 🔹 Baseline regression using SVR + XGBoost
+├── technical_features/             # 🔹 Add moving averages, RSI, volume, etc.
+├── classification_movement/        # 🔹 Predict direction (up/down) instead of price
+├── deep_learning_lstm/             # 🔹 LSTM for time-series forecasting
+├── backtesting_trades/             # 🔹 Simulate trades based on model predictions
+├── crypto_modeling/                # 🔹 Compare crypto vs stock prediction
+├── requirements.txt
+└── README.md
+```
 
+Each folder contains:
+- A clean notebook
+- Commentary on methods used
+- Visualizations
+- Performance metrics (MSE, accuracy, etc.)
+
+---
+
+## 📁 Modules Breakdown
+
+### `baseline_svr_xgboost/`
+- Compares SVR and XGBoost on Tesla stock
+- Uses only time index as input
+- Evaluates fit using MSE and R²
+
+### `technical_features/`
+- Adds indicators like SMA, EMA, RSI
+- Tests whether additional signals improve prediction
+- Uses feature engineering + XGBoost
+
+### `classification_movement/`
+- Reframes the problem: up/down instead of price
+- Binary classifier using logistic regression, XGBoost
+- Evaluates using accuracy, precision, recall, F1
+
+### `deep_learning_lstm/`
+- Builds a sequential LSTM model with Keras
+- Uses time windows as input sequences
+- Evaluates forecasting ability for 1–5 day predictions
+
+### `backtesting_trades/`
+- Simulates trading decisions based on predicted signals
+- Tracks portfolio returns vs buy-and-hold strategy
+- Incorporates win rate, drawdown, cumulative profit
+
+### `crypto_modeling/`
+- Applies models to BTC-USD or ETH-USD
+- Compares performance against traditional stocks
+- Analyzes differences in trend behavior and volatility
+
+---
+
+## 🛠 Getting Started
+
+Install dependencies:
 ```bash
-pip install yfinance xgboost scikit-learn
+pip install -r requirements.txt
+```
+
+Or run each notebook in **Google Colab** with necessary pip cells included.
+
+---
+
+## 📈 Example Visuals
+- Model predictions vs actual
+- Confusion matrix (classification)
+- Trade profit curves
+- Feature importance plots
+
+---
+
+## 🧠 Future Ideas
+- LSTM + Attention
+- Hybrid models (technical + news sentiment)
+- Cross-stock generalization testing
+
+---
+
+## 🙋‍♂️ Author
+**Daivarsi Malik**  
+Applied Modeling & Optimization  
+Feel free to fork, run experiments, or suggest new modules.
+
+---
+
+## 📜 License
+MIT License
+
